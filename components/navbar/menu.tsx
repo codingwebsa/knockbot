@@ -13,10 +13,11 @@ import {
 const Menu = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <span className="relative block md:hidden">
-          <MenuIcon size={20} />
-        </span>
+      <DropdownMenuTrigger
+        aria-label="Menu"
+        className="relative block md:hidden"
+      >
+        <MenuIcon size={20} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mt-3">
         <DropdownMenuLabel>Menu</DropdownMenuLabel>
