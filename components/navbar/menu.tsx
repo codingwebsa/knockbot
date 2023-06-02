@@ -14,7 +14,7 @@ const Menu = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <span aria-label="Menu" className="relative block md:hidden">
+        <span className="relative block md:hidden">
           <MenuIcon size={20} />
         </span>
       </DropdownMenuTrigger>
