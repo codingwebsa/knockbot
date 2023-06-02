@@ -18,7 +18,7 @@ const Menu = () => {
           <MenuIcon size={20} />
         </span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="mt-3">
         <DropdownMenuLabel>Menu</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
