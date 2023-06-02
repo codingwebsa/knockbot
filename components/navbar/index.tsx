@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <header className="sticky z-20 mt-6 top-6">
       <Container>
-        <div className="flex items-center justify-between px-5 py-4 rounded-md bg-black/10 backdrop-blur-md">
+        <div className="flex items-center justify-between px-5 py-4 rounded-md bg-black/10 backdrop-blur-[8px]">
           <p className="text-lg font-bold">KnockBot.</p>
           <nav className="flex items-center gap-2 font-medium">
             {/* hidden in mobile */}

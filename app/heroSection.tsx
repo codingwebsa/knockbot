@@ -6,10 +6,10 @@ const HeroSection = () => {
     <div className="w-full mt-14 md:mt-24 lg:mt-36">
       {/* top */}
       <div className="flex justify-center mb-4">
-        <button className="text-xs rounded-full flex items-center gap-2.5 transition duration-300 bg-white/10 pl-2.5 pr-1.5 group hover:bg-white/20 backdrop-blur-sm py-0.5">
+        <button className="text-sm rounded-full flex items-center gap-2.5 transition duration-300 bg-white/10 pl-2.5 pr-1.5 group hover:bg-white/20 backdrop-blur-sm py-0.5">
           <p>Explore new AI tools</p>
           <span className="bg-white/5 px-1.5 py-0 rounded-full group-hover:bg-white/10">
-            <LongRightArrowIcon size={14} />
+            <LongRightArrowIcon size={16} />
           </span>
         </button>
       </div>

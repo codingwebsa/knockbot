@@ -6,7 +6,7 @@
   display: none;
 }
 ::selection {
-  background: #f5f5f5;
+  background: #f5f5f581;
   color: #171717;
 }
 
