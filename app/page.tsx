@@ -1,10 +1,16 @@
 import Container from "@/components/container";
 import HeroSection from "./heroSection";
+import Filters from "@/components/filters";
 
 const Home = () => {
   return (
     <Container>
-      <HeroSection />
+      <section>
+        <HeroSection />
+      </section>
+      <section className="mt-20">
+        <Filters />
+      </section>
     </Container>
   );
 };
