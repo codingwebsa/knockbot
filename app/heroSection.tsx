@@ -15,8 +15,8 @@ const HeroSection = () => {
       </div>
       {/* hero-text */}
       <div>
-        <h1 className="text-center text-7xl font-bold capitalize">
-          The whole new Era of AI <br /> powered life
+        <h1 className="text-gradient text-center text-7xl font-bold capitalize">
+          The whole new Era of AI <br /> powered life.
         </h1>
       </div>
       {/* newsletter */}
