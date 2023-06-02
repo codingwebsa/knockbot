@@ -1,14 +1,16 @@
-import Container from "./container";
+import Container from "../container";
 import { SearchIcon } from "@/components/icons";
+import Menu from "./menu";
 
 const Navbar = () => {
   return (
-    <header className="mt-6">
+    <header className="sticky z-20 mt-6 top-6">
       <Container>
-        <div className="flex justify-between items-center bg-black/10 py-4 px-5 rounded-md backdrop-blur-xl">
+        <div className="flex items-center justify-between px-5 py-4 rounded-md bg-black/10 backdrop-blur-md">
           <p className="text-lg font-bold">KnockBot.</p>
-          <nav className="flex gap-2 items-center font-medium">
-            <div className="flex gap-6 mr-2">
+          <nav className="flex items-center gap-2 font-medium">
+            {/* hidden in mobile */}
+            <div className="hidden gap-6 mr-2 md:flex">
               <p>Top Picks</p>
               <p>Submit</p>
               <p>Sponsor</p>
@@ -18,9 +20,11 @@ const Navbar = () => {
                 Newsletter
               </button>
             </div>
-            <span>
+            <span className="mr-4 md:mr-0">
               <SearchIcon size={20} />
             </span>
+            {/* hidden in (md:) */}
+            <Menu />
           </nav>
         </div>
       </Container>

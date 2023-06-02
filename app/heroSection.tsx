@@ -3,7 +3,7 @@ import Newsletter from "./newsletter";
 
 const HeroSection = () => {
   return (
-    <div className="w-full mt-[130px]">
+    <div className="w-full mt-14 md:mt-24 lg:mt-36">
       {/* top */}
       <div className="flex justify-center mb-4">
         <button className="text-xs rounded-full flex items-center gap-2.5 transition duration-300 bg-white/10 pl-2.5 pr-1.5 group hover:bg-white/20 backdrop-blur-sm py-0.5">
@@ -15,7 +15,7 @@ const HeroSection = () => {
       </div>
       {/* hero-text */}
       <div>
-        <h1 className="text-gradient text-center text-7xl font-bold capitalize">
+        <h1 className="text-5xl font-bold text-center capitalize md:text-6xl lg:text-7xl text-gradient">
           The whole new Era of AI <br /> powered life.
         </h1>
       </div>
