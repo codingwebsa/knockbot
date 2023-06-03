@@ -2,8 +2,18 @@ import Container from "@/components/container";
 import HeroSection from "./heroSection";
 import Filters from "./filters";
 import Posts from "./posts";
+import supabase from "@/services/supabase";
 
-const Home = () => {
+export const revalidate = 60;
+
+const Home = async () => {
+  let { data } = await supabase.from("websites").select("*");
+
+  if (!data) {
+    throw new Error("Something went wrong!");
+  }
+
+  console.log(data);
   return (
     <Container>
       <section>
@@ -13,7 +23,7 @@ const Home = () => {
         <Filters />
       </section>
       <section className="mt-10">
-        <Posts />
+        <Posts data={data} />
       </section>
     </Container>
   );

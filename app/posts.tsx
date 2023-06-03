@@ -1,16 +1,16 @@
-import { PostData as data } from "@/constants/postdata";
 import Image from "next/image";
+import Link from "next/link";
 
-const Posts = () => {
+const Posts = ({ data }: { data: any }) => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 gap-y-5">
-        {data.map((x, index) => (
-          <div key={index} className="">
+        {data.map((x: any, index: number) => (
+          <Link href={`/tool/${x.id}`} key={index} className="">
             {/* image */}
             <div className="relative">
               <Image
-                src={x.imageUrl}
+                src={x.image_url}
                 className="object-cover w-full aspect-video rounded-xl"
                 alt={x.title}
                 width={360}
@@ -18,7 +18,7 @@ const Posts = () => {
               />
               <span className="absolute bottom-2 left-2">
                 <p className="bg-black/50 backdrop-blur-lg px-3 py-1.5 rounded-sm">
-                  {x.price}
+                  {x.pricing}
                 </p>
               </span>
             </div>
@@ -45,7 +45,7 @@ const Posts = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
