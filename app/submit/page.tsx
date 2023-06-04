@@ -5,6 +5,8 @@ import { OurFileRouter } from "../api/uploadthing/core";
 import "@uploadthing/react/styles.css";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
 
 import Container from "@/components/container";
 import { AsteriskIcon, CrossIcon, UploadIcon } from "@/components/icons";
@@ -29,7 +31,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 export default function Submit() {
   const [open, setOpen] = useState(false);
@@ -38,11 +39,14 @@ export default function Submit() {
     fileKey: string;
     fileUrl: string;
   } | null>(null);
+  const { register, handleSubmit } = useForm();
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    console.log("helo");
+  async function onSubmit(formValues: any) {
+    console.log("🚀 ~ file: page.tsx:47 ~ onSubmit ~ formValues:", formValues);
   }
+
+  console.log(value);
+
   return (
     <div>
       <Container className="max-w-4xl px-6">
@@ -59,7 +63,7 @@ export default function Submit() {
         </div>
         {/* form */}
         <div className="mt-20">
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* group- TOOL NAME */}
             <div>
               {/* label */}
@@ -75,6 +79,7 @@ export default function Submit() {
                   className="bg-white/[5%] w-full px-2 py-2.5 rounded"
                   placeholder="ex: ChatGPT"
                   type="text"
+                  {...register("tool_name")}
                 />
               </div>
             </div>
@@ -94,23 +99,24 @@ export default function Submit() {
                   placeholder="Describe you tool."
                   rows={7}
                   maxLength={1000}
+                  {...register("tool_description")}
                 />
               </div>
             </div>
             {/* group - Price & Category */}
             <div className="flex justify-between gap-2">
-              {/* group - PRICE */}
+              {/* group - PRICING */}
               <div className="w-full mt-3">
                 {/* label */}
                 <div className="flex items-center gap-1">
-                  <p className="text-xl font-semibold">Pricing</p>
+                  <p className="text-xl font-semibold">Available Pricing</p>
                   <span className="text-xl rounded-full bg-white/10 h-fit">
                     <AsteriskIcon size={12} />
                   </span>
                 </div>
                 {/* input */}
                 <div className="mt-1">
-                  <Select>
+                  <Select onValueChange={(v) => console.log(v)}>
                     <SelectTrigger className="">
                       <SelectValue placeholder="Pricing" />
                     </SelectTrigger>
@@ -199,6 +205,7 @@ export default function Submit() {
                   className="bg-white/[5%] w-full px-2 py-2.5 rounded"
                   placeholder="Describe your tool in 1/2 sentence."
                   type="text"
+                  {...register("tool_short_description")}
                 />
               </div>
             </div>
@@ -217,6 +224,7 @@ export default function Submit() {
                   className="bg-white/[5%] w-full px-2 py-2.5 rounded"
                   placeholder="Tool link"
                   type="text"
+                  {...register("tool_link")}
                 />
               </div>
             </div>

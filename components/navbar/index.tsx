@@ -8,7 +8,9 @@ const Navbar = () => {
     <header className="sticky z-20 mt-6 top-6">
       <Container>
         <div className="flex items-center justify-between px-5 py-4 rounded-md bg-black/10 backdrop-blur-[8px]">
-          <p className="text-lg font-bold">KnockBot.</p>
+          <Link href="/">
+            <p className="text-lg font-bold">KnockBot.</p>
+          </Link>
           <nav className="flex items-center gap-2 font-medium">
             {/* hidden in mobile */}
             <div className="hidden gap-6 mr-2 md:flex">
