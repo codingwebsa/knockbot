@@ -7,6 +7,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { toast, Toaster } from "react-hot-toast";
 
 import Container from "@/components/container";
 import { AsteriskIcon, CrossIcon, UploadIcon } from "@/components/icons";
@@ -31,6 +32,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import supabase from "@/services/supabase";
 
 export default function Submit() {
   const [open, setOpen] = useState(false);
@@ -39,10 +41,49 @@ export default function Submit() {
     fileKey: string;
     fileUrl: string;
   } | null>(null);
-  const { register, handleSubmit } = useForm();
+  const [pricingValue, setPricingValue] = useState<string>("");
+  const { register, handleSubmit, reset } = useForm();
 
   async function onSubmit(formValues: any) {
-    console.log("🚀 ~ file: page.tsx:47 ~ onSubmit ~ formValues:", formValues);
+    const tool_name = formValues.tool_name,
+      fileUrl = uploadThingImage?.fileUrl,
+      tool_description = formValues.tool_description,
+      tool_short_description = formValues.tool_short_description,
+      tool_link = formValues.tool_link,
+      pricing = pricingValue,
+      category = value;
+
+    if (
+      !tool_name ||
+      !fileUrl ||
+      !tool_description ||
+      !tool_short_description ||
+      !tool_link ||
+      !pricing ||
+      !category
+    ) {
+      return toast.error("All felids are required.");
+    }
+
+    try {
+      await supabase.from("websites").insert([
+        {
+          title: tool_name,
+          image_url: fileUrl,
+          description: tool_description,
+          short_description: tool_short_description,
+          website_url: tool_link,
+          pricing: pricing,
+          category: category,
+        },
+      ]);
+
+      toast.success("Uploaded Successfully");
+      setUploadThingImage(null);
+      reset();
+    } catch (error) {
+      toast.error("Failed to upload.");
+    }
   }
 
   console.log(value);
@@ -116,7 +157,7 @@ export default function Submit() {
                 </div>
                 {/* input */}
                 <div className="mt-1">
-                  <Select onValueChange={(v) => console.log(v)}>
+                  <Select onValueChange={(x) => setPricingValue(x)}>
                     <SelectTrigger className="">
                       <SelectValue placeholder="Pricing" />
                     </SelectTrigger>
@@ -285,6 +326,8 @@ export default function Submit() {
           </form>
         </div>
       </Container>
+
+      <Toaster />
     </div>
   );
 }
