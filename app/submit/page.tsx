@@ -31,29 +31,6 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const categories = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
-
 export default function Submit() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -238,7 +215,7 @@ export default function Submit() {
               <div className="mt-1">
                 <input
                   className="bg-white/[5%] w-full px-2 py-2.5 rounded"
-                  placeholder="Describe your tool in 1/2 sentence."
+                  placeholder="Tool link"
                   type="text"
                 />
               </div>
@@ -263,7 +240,6 @@ export default function Submit() {
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
                       // Do something with the response
-                      console.log("Files: ", res);
                       res && setUploadThingImage(res[0]);
                     }}
                     onUploadError={(error: Error) => {
@@ -305,17 +281,105 @@ export default function Submit() {
   );
 }
 
-{
-  /* <UploadButton<OurFileRouter>
-  endpoint="imageUploader"
-  onClientUploadComplete={(res) => {
-    // Do something with the response
-    console.log("Files: ", res);
-    alert("Upload Completed");
-  }}
-  onUploadError={(error: Error) => {
-    // Do something with the error.
-    alert(`ERROR! ${error.message}`);
-  }}
-/>; */
-}
+const categories = [
+  {
+    value: "avatar-creation",
+    label: "Avatar-Creation",
+  },
+  {
+    value: "social-media",
+    label: "Social-Media",
+  },
+  {
+    value: "video-editing",
+    label: "Video-Editing",
+  },
+  {
+    value: "speech-generation",
+    label: "Speech-Generation",
+  },
+  {
+    value: "ai-detectors",
+    label: "AI-Detectors",
+  },
+  {
+    value: "teachers",
+    label: "Teachers",
+  },
+  {
+    value: "students",
+    label: "Students",
+  },
+  {
+    value: "chatbots",
+    label: "Chatbots",
+  },
+  {
+    value: "writing",
+    label: "Writing",
+  },
+  {
+    value: "marketing",
+    label: "Marketing",
+  },
+  {
+    value: "coding",
+    label: "Coding",
+  },
+  {
+    value: "finance",
+    label: "Finance",
+  },
+  {
+    value: "data",
+    label: "Data",
+  },
+  {
+    value: "fun",
+    label: "Fun",
+  },
+  {
+    value: "inspiration",
+    label: "Inspiration",
+  },
+  {
+    value: "generative-art",
+    label: "Generative-Art",
+  },
+  {
+    value: "video-creation",
+    label: "Video-Creation",
+  },
+  {
+    value: "music",
+    label: "Music",
+  },
+  {
+    value: "prompting",
+    label: "Prompting",
+  },
+  {
+    value: "productivity",
+    label: "Productivity",
+  },
+  {
+    value: "business",
+    label: "Business",
+  },
+  {
+    value: "self-improvement",
+    label: "Self-Improvement",
+  },
+  {
+    value: "tool-databases",
+    label: "Tool-Databases",
+  },
+  {
+    value: "ai-communities",
+    label: "AI-Communities",
+  },
+  {
+    value: "others",
+    label: "Others",
+  },
+];
