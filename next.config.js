@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["supertools.therundown.ai"],
+    domains: ["supertools.therundown.ai", "uploadthing.com"],
   },
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MenuIcon } from "../icons";
 import {
   DropdownMenu,
@@ -26,7 +27,9 @@ const Menu = () => {
           <button className="text-lg">Top Picks</button>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <button className="text-lg">Submit</button>
+          <Link href="/submit" className="text-lg">
+            Submit
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <button className="text-lg">Sponsor</button>

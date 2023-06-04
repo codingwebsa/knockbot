@@ -1,6 +1,7 @@
 import Container from "../container";
 import { SearchIcon } from "@/components/icons";
 import Menu from "./menu";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -12,7 +13,7 @@ const Navbar = () => {
             {/* hidden in mobile */}
             <div className="hidden gap-6 mr-2 md:flex">
               <p>Top Picks</p>
-              <p>Submit</p>
+              <Link href="/submit">Submit</Link>
               <p>Sponsor</p>
             </div>
             <div className="mr-3.5">
