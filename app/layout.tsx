@@ -1,4 +1,6 @@
 import localFont from "next/font/local";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -27,10 +29,19 @@ export default function RootLayout({
         after:content-[""] after:fixed after:h-[500px] after:w-[700px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-radial after:from-white after:to-transparent after:blur-3xl after:opacity-30 after:-z-20 after:top-[350px] after:-left-[250px]
         `}
       >
-        <div>
-          <Navbar />
-          <main>{children}</main>
-        </div>
+        <ClerkProvider
+          appearance={{
+            baseTheme: dark,
+            variables: {
+              colorPrimary: "rgba(255,255,255,.2)",
+            },
+          }}
+        >
+          <div>
+            <Navbar />
+            <main>{children}</main>
+          </div>
+        </ClerkProvider>
       </body>
     </html>
   );

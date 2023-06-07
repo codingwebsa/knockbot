@@ -8,7 +8,7 @@ const Posts = ({ data }: { data: any }) => {
         {data.map((x: any, index: number) => (
           <Link href={`/tool/${x.id}`} key={index} className="">
             {/* image */}
-            <div className="relative">
+            <div className="relative w-full h-auto aspect-video">
               <Image
                 src={x.image_url}
                 className="object-cover w-full aspect-video rounded-xl"
