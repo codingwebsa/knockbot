@@ -3,6 +3,7 @@ import HeroSection from "./heroSection";
 import Filters from "./filters";
 import Posts from "./posts";
 import supabase from "@/services/supabase";
+import Display from "./display";
 
 export const revalidate = 60;
 
@@ -18,11 +19,11 @@ const Home = async () => {
       <section>
         <HeroSection />
       </section>
-      <section className="mt-20">
+      {/* <section className="mt-20">
         <Filters />
-      </section>
+      </section> */}
       <section className="mt-10">
-        <Posts data={data} />
+        <Display data={data} />
       </section>
     </Container>
   );
