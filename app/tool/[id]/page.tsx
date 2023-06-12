@@ -3,8 +3,11 @@ import supabase from "@/services/supabase";
 import Image from "next/image";
 import Link from "next/link";
 
-const Tool = async () => {
-  const { data } = await supabase.from("websites").select("*").eq("id", 13);
+const Tool = async ({ params }: { params: { id: any } }) => {
+  const { data } = await supabase
+    .from("websites")
+    .select("*")
+    .eq("id", params.id);
   // console.log("🚀 ~ file: page.tsx:5 ~ Tool ~ data:", data);
   if (!data) {
     return <h1>Page not found.</h1>;
