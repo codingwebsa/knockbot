@@ -2,7 +2,11 @@
 const nextConfig = {
   images: {
     formats: ["image/webp"],
-    domains: ["supertools.therundown.ai", "uploadthing.com"],
+    domains: [
+      "supertools.therundown.ai",
+      "uploadthing.com",
+      "webstack-screenshot-one.vercel.app",
+    ],
   },
 };
 
