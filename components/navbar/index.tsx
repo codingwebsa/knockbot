@@ -14,9 +14,9 @@ const Navbar = () => {
           <nav className="flex items-center gap-2 font-medium">
             {/* hidden in mobile */}
             <div className="hidden gap-6 mr-2 md:flex">
-              <p>Top Picks</p>
+              {/* <p>Top Picks</p> */}
               <Link href="/submit">Submit</Link>
-              <p>Sponsor</p>
+              {/* <p>Sponsor</p> */}
             </div>
             <div className="mr-3.5">
               <button className="border border-white/10 px-4 py-2 rounded-[4px]">
