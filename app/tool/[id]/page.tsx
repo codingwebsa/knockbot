@@ -35,13 +35,13 @@ const Tool = async ({ params }: { params: { id: any } }) => {
               <p>{data[0].pricing} plans available</p>
             </div>
             <div className="mt-8">
-              <Link
+              <a
                 target="_blank"
                 href={data[0].website_url}
                 className="px-4 py-3 text-lg border rounded-lg border-white/10"
               >
                 View Tool
-              </Link>
+              </a>
             </div>
           </div>
         </div>
