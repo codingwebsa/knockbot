@@ -17,8 +17,8 @@ const Tool = async ({ params }: { params: { id: any } }) => {
     <Container>
       <div className="mt-20">
         <h1 className="text-5xl font-bold">{data[0].title}</h1>
-        <div className="flex gap-8 mt-20">
-          <div className="w-[40%]">
+        <div className="grid grid-cols-1 gap-8 mt-20 md:grid-cols-2">
+          <div className="w-full">
             <Image
               src={data[0].image_url}
               width={500}
@@ -28,7 +28,7 @@ const Tool = async ({ params }: { params: { id: any } }) => {
               alt={data[0].title}
             />
           </div>
-          <div className="max-w-[50%]">
+          <div className="">
             <p className="">{data[0].description}</p>
             <div className="flex gap-1.5 mt-6 text-lg">
               <p className="font-medium">Price: </p>
