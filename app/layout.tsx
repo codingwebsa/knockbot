@@ -14,9 +14,39 @@ const cabinet = localFont({
 export const metadata: Metadata = {
   title: "Knockbot",
   description: "Explore The whole new Era of AI Power Life.",
+  colorScheme: "light",
+  creator: "Coding SA",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  themeColor: "#151618",
   openGraph: {
-    images: "/og.jpg",
     title: "Knockbot - All AI tools in one place",
+    description: "Explore The whole new Era of AI Power Life.",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1716,
+        height: 1080,
+        type: "image/jpg",
+        alt: "Knock Bot",
+      },
+    ],
   },
 };
 
