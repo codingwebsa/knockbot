@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { type Metadata } from "next";
 
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -10,9 +11,13 @@ const cabinet = localFont({
   variable: "--cabinet-font",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Knockbot",
   description: "Explore The whole new Era of AI Power Life.",
+  openGraph: {
+    images: "/og.jpg",
+    title: "Knockbot - All AI tools in one place",
+  },
 };
 
 export default function RootLayout({
