@@ -2,37 +2,61 @@
 
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+
 import Posts from "./posts";
+import { getUniqueArray } from "@/lib/utils";
 
 const Display = ({ data }: { data: any }) => {
-  const [active, setActive] = useState("all-tools");
+  const [active, setActive] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
+  // only runs once the page load
   useEffect(() => {
-    if (active == "all-tools") return setFilteredData(data);
+    const _arr = data.map((x: any) => {
+      return x.category;
+    });
+
+    setCategories(getUniqueArray(_arr).slice(0, 30));
+  }, []);
+
+  // runs every time the active state changes
+  useEffect(() => {
+    if (active == "") return setFilteredData(data);
 
     setFilteredData(data.filter((x: any) => x.category === active));
-  }, [active]);
+  }, [active, data]);
 
   return (
     <>
       <section>
         <div className="flex flex-wrap justify-center gap-3">
-          {categories.map((x, i) => (
+          {/* all tools */}
+          <button
+            className={clsx(
+              "px-3 py-2 transition shadow-lg duration-200 border rounded-lg border-white/10 hover:bg-white/[5%]",
+              {
+                "bg-white/10": active == "",
+              }
+            )}
+            onClick={() => setActive("")}
+          >
+            <p className="text-base font-medium capitalize lg:text-lg">
+              All Tools
+            </p>
+          </button>
+          {categories?.map((x: string, i: number) => (
             <button
               className={clsx(
                 "px-3 py-2 transition shadow-lg duration-200 border rounded-lg border-white/10 hover:bg-white/[5%]",
                 {
-                  "bg-white/10": active == x.value,
+                  "bg-white/10": active == x,
                 }
               )}
-              onClick={() => setActive(x.value)}
-              aria-label={x.label}
+              onClick={() => setActive(x)}
               key={i}
             >
-              <p className="text-base font-medium capitalize lg:text-lg">
-                {x.label}
-              </p>
+              <p className="text-base font-medium capitalize lg:text-lg">{x}</p>
             </button>
           ))}
         </div>
@@ -45,110 +69,3 @@ const Display = ({ data }: { data: any }) => {
 };
 
 export default Display;
-
-const categories = [
-  {
-    value: "all-tools",
-    label: "All tools",
-  },
-  {
-    value: "avatar-creation",
-    label: "Avatar-Creation",
-  },
-  {
-    value: "social-media",
-    label: "Social-Media",
-  },
-  {
-    value: "video-editing",
-    label: "Video-Editing",
-  },
-  {
-    value: "speech-generation",
-    label: "Speech-Generation",
-  },
-  {
-    value: "ai-detectors",
-    label: "AI-Detectors",
-  },
-  {
-    value: "teachers",
-    label: "Teachers",
-  },
-  {
-    value: "students",
-    label: "Students",
-  },
-  {
-    value: "chatbots",
-    label: "Chatbots",
-  },
-  {
-    value: "writing",
-    label: "Writing",
-  },
-  {
-    value: "marketing",
-    label: "Marketing",
-  },
-  {
-    value: "coding",
-    label: "Coding",
-  },
-  {
-    value: "finance",
-    label: "Finance",
-  },
-  {
-    value: "data",
-    label: "Data",
-  },
-  {
-    value: "fun",
-    label: "Fun",
-  },
-  {
-    value: "inspiration",
-    label: "Inspiration",
-  },
-  {
-    value: "generative-art",
-    label: "Generative-Art",
-  },
-  {
-    value: "video-creation",
-    label: "Video-Creation",
-  },
-  {
-    value: "music",
-    label: "Music",
-  },
-  {
-    value: "prompting",
-    label: "Prompting",
-  },
-  {
-    value: "productivity",
-    label: "Productivity",
-  },
-  {
-    value: "business",
-    label: "Business",
-  },
-  {
-    value: "self-improvement",
-    label: "Self-Improvement",
-  },
-  {
-    value: "tool-databases",
-    label: "Tool-Databases",
-  },
-  {
-    value: "ai-communities",
-    label: "AI-Communities",
-  },
-  {
-    value: "others",
-    label: "Others",
-  },
-];
