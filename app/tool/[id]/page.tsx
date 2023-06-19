@@ -1,17 +1,19 @@
 import Container from "@/components/container";
 import supabase from "@/services/supabase";
 import Image from "next/image";
-import Link from "next/link";
 
 const Tool = async ({ params }: { params: { id: any } }) => {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("websites")
     .select("*")
     .eq("id", params.id);
   // console.log("🚀 ~ file: page.tsx:5 ~ Tool ~ data:", data);
-  if (!data) {
+  if (!data || error) {
     return <h1>Page not found.</h1>;
   }
+
+  const link = data[0].website_url;
+  const modified_link = link.startsWith("https://") ? link : "https://" + link;
 
   return (
     <Container>
@@ -37,7 +39,7 @@ const Tool = async ({ params }: { params: { id: any } }) => {
             <div className="mt-8">
               <a
                 target="_blank"
-                href={data[0].website_url}
+                href={modified_link}
                 className="px-4 py-3 text-lg border rounded-lg border-white/10"
               >
                 View Tool
