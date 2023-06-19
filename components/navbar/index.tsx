@@ -1,7 +1,9 @@
+import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+
 import Container from "../container";
 import { SearchIcon } from "@/components/icons";
 import Menu from "./menu";
-import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -19,9 +21,16 @@ const Navbar = () => {
               {/* <p>Sponsor</p> */}
             </div>
             <div className="mr-3.5">
-              <button className="border border-white/10 px-4 py-2 rounded-[4px]">
-                Newsletter
-              </button>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="border border-white/10 px-4 py-2 rounded-[4px]">
+                    Newsletter
+                  </button>
+                </SignInButton>
+              </SignedOut>
             </div>
             <span className="mr-4 md:mr-0">
               <SearchIcon size={20} />

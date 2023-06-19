@@ -20,7 +20,7 @@ const HeroSection = () => {
         </h1>
       </div>
       {/* newsletter */}
-      <div className="mt-16">
+      <div className="flex justify-center mt-16">
         <Newsletter />
       </div>
     </div>

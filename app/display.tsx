@@ -9,16 +9,11 @@ import { getUniqueArray } from "@/lib/utils";
 const Display = ({ data }: { data: any }) => {
   const [active, setActive] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [categories, setCategories] = useState<string[]>([]);
 
-  // only runs once the page load
-  useEffect(() => {
-    const _arr = data.map((x: any) => {
-      return x.category;
-    });
-
-    setCategories(getUniqueArray(_arr).slice(0, 30));
-  }, []);
+  const _arr = data.map((x: any) => {
+    return x.category;
+  });
+  const categories = getUniqueArray(_arr).slice(0, 30);
 
   // runs every time the active state changes
   useEffect(() => {

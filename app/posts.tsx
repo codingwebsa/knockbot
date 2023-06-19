@@ -2,20 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Posts = ({ data }: { data: any }) => {
-  function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 gap-y-5">
         {data.map((x: any, index: number) => {
-          const color = getRandomColor();
           return (
             <Link href={`/tool/${x.id}`} key={index} className="">
               {/* image */}
