@@ -1,7 +1,43 @@
 import Image from "next/image";
+import { Metadata, ResolvingMetadata } from "next";
 
 import Container from "@/components/container";
 import supabase from "@/services/supabase";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  // const id = params.id;
+
+  // fetch data
+  const { data } = await supabase
+    .from("websites")
+    .select("*")
+    .eq("id", params.id);
+
+  const tool = data?.[0];
+
+  // optionally access and extend (rather than replace) parent metadata
+  var previousImages: any[] = [];
+  if (parent) {
+    previousImages = (await parent).openGraph?.images || [];
+  }
+
+  return {
+    title: tool.title,
+    description: tool.short_description,
+    openGraph: {
+      images: [tool.image_url, ...previousImages],
+    },
+  };
+}
 
 const Tool = async ({ params }: { params: { id: any } }) => {
   const { data, error } = await supabase
@@ -27,7 +63,7 @@ const Tool = async ({ params }: { params: { id: any } }) => {
               width={500}
               height={500}
               sizes="40vw"
-              className="w-full h-auto rounded-lg aspect-video"
+              className="object-cover w-full h-auto rounded-lg aspect-video"
               alt={data[0].title}
             />
           </div>
@@ -54,3 +90,11 @@ const Tool = async ({ params }: { params: { id: any } }) => {
 };
 
 export default Tool;
+
+export async function generateStaticParams() {
+  const { data } = await supabase.from("websites").select("id");
+
+  return data!.map((tool) => ({
+    id: tool.id.toString(),
+  }));
+}

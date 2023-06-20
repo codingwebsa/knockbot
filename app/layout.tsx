@@ -12,7 +12,10 @@ const cabinet = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Knockbot",
+  title: {
+    default: "Knockbot",
+    template: "%s | Knockbot",
+  },
   description: "Explore The whole new Era of AI Power Life.",
   colorScheme: "light",
   creator: "Coding SA",
