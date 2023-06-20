@@ -1,43 +1,8 @@
 import Image from "next/image";
-import { Metadata, ResolvingMetadata } from "next";
 
 import Container from "@/components/container";
 import supabase from "@/services/supabase";
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  // const id = params.id;
-
-  // fetch data
-  const { data } = await supabase
-    .from("websites")
-    .select("*")
-    .eq("id", params.id);
-
-  const tool = data?.[0];
-
-  // optionally access and extend (rather than replace) parent metadata
-  var previousImages: any[] = [];
-  if (parent) {
-    previousImages = (await parent).openGraph?.images || [];
-  }
-
-  return {
-    title: tool.title,
-    description: tool.short_description,
-    openGraph: {
-      images: [tool.image_url, ...previousImages],
-    },
-  };
-}
 
 const Tool = async ({ params }: { params: { id: any } }) => {
   const { data, error } = await supabase
