@@ -1,6 +1,7 @@
+import Image from "next/image";
+
 import Container from "@/components/container";
 import supabase from "@/services/supabase";
-import Image from "next/image";
 
 const Tool = async ({ params }: { params: { id: any } }) => {
   const { data, error } = await supabase

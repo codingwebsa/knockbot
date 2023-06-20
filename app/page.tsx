@@ -6,7 +6,9 @@ import Display from "./display";
 export const revalidate = 60;
 
 const Home = async () => {
-  let { data } = await supabase.from("websites").select("*").range(0, 500);
+  let { data } = await supabase.from("websites").select("*").order("id", {
+    ascending: false,
+  });
 
   if (!data) {
     throw new Error("Something went wrong!");

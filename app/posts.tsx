@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageCom from "@/components/ImageCom";
 import Link from "next/link";
 
 const Posts = ({ data }: { data: any }) => {
@@ -10,13 +10,22 @@ const Posts = ({ data }: { data: any }) => {
             <Link href={`/tool/${x.id}`} key={index} className="">
               {/* image */}
               <div className="relative w-full h-auto aspect-video">
-                <Image
+                <ImageCom
                   src={x.image_url}
+                  className="object-cover w-full aspect-video rounded-xl"
+                  alt={x.title}
+                  // width={360}
+                  // height={360}
+                  fill
+                  sizes="25vw"
+                />
+                {/* <Image
+                  src={`https://webstack-screenshot.vercel.app/?url=${x.website_url}`}
                   className="object-cover w-full aspect-video rounded-xl"
                   alt={x.title}
                   width={360}
                   height={360}
-                />
+                /> */}
                 <span className="absolute bottom-2 left-2">
                   <p className="bg-black/50 backdrop-blur-lg px-3 py-1.5 rounded-sm">
                     {x.pricing}
