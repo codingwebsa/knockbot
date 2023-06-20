@@ -3,7 +3,6 @@ import Image from "next/image";
 import Container from "@/components/container";
 import supabase from "@/services/supabase";
 
-
 const Tool = async ({ params }: { params: { id: any } }) => {
   const { data, error } = await supabase
     .from("websites")
@@ -21,20 +20,20 @@ const Tool = async ({ params }: { params: { id: any } }) => {
     <Container>
       <div className="mt-20">
         <h1 className="text-5xl font-bold">{data[0].title}</h1>
-        <div className="grid grid-cols-1 gap-8 mt-20 md:grid-cols-2">
+        <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="w-full">
             <Image
               src={data[0].image_url}
               width={500}
               height={500}
               sizes="40vw"
-              className="object-cover w-full h-auto rounded-lg aspect-video"
+              className="aspect-video h-auto w-full rounded-lg object-cover"
               alt={data[0].title}
             />
           </div>
           <div className="">
             <p className="">{data[0].description}</p>
-            <div className="flex gap-1.5 mt-6 text-lg">
+            <div className="mt-6 flex gap-1.5 text-lg">
               <p className="font-medium">Price: </p>
               <p>{data[0].pricing} plans available</p>
             </div>
@@ -42,7 +41,7 @@ const Tool = async ({ params }: { params: { id: any } }) => {
               <a
                 target="_blank"
                 href={modified_link}
-                className="px-4 py-3 text-lg border rounded-lg border-white/10"
+                className="rounded-lg border border-white/10 px-4 py-3 text-lg"
               >
                 View Tool
               </a>
@@ -55,11 +54,3 @@ const Tool = async ({ params }: { params: { id: any } }) => {
 };
 
 export default Tool;
-
-export async function generateStaticParams() {
-  const { data } = await supabase.from("websites").select("id");
-
-  return data!.map((tool) => ({
-    id: tool.id.toString(),
-  }));
-}
