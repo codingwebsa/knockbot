@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { type Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -61,10 +62,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cabinet.variable} overflow-x-hidden font-cabinet text-white pb-96
-         bg-[#151618] relative 
-        before:content-[""] before:fixed before:h-[550px] before:w-[700px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-[#ffefd648] before:blur-3xl before:opacity-20 before:-z-20 before:-top-[250px] before:-right-[550px] 
-        after:content-[""] after:fixed after:h-[500px] after:w-[700px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-radial after:from-white after:to-transparent after:blur-3xl after:opacity-30 after:-z-20 after:top-[350px] after:-left-[250px]
+        className={`${cabinet.variable} relative overflow-x-hidden bg-[#151618] pb-96
+         font-cabinet text-white 
+        before:fixed before:-right-[550px] before:-top-[250px] before:-z-20 before:h-[550px] before:w-[700px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-[#ffefd648] before:opacity-20 before:blur-3xl before:content-[""] 
+        after:fixed after:-left-[250px] after:top-[350px] after:-z-20 after:h-[500px] after:w-[700px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-radial after:from-white after:to-transparent after:opacity-30 after:blur-3xl after:content-[""]
         `}
       >
         <ClerkProvider
@@ -80,6 +81,7 @@ export default function RootLayout({
           <div>
             <Navbar />
             <main>{children}</main>
+            <Analytics />
           </div>
         </ClerkProvider>
       </body>
