@@ -17,7 +17,7 @@ const Display = ({ data }: { data: any }) => {
 
   // runs every time the active state changes
   useEffect(() => {
-    if (active == "") return setFilteredData(data);
+    if (active == "") return setFilteredData(data.slice(0, 70));
 
     setFilteredData(data.filter((x: any) => x.category === active));
   }, [active, data]);
@@ -29,7 +29,7 @@ const Display = ({ data }: { data: any }) => {
           {/* all tools */}
           <button
             className={clsx(
-              "px-3 py-2 transition shadow-lg duration-200 border rounded-lg border-white/10 hover:bg-white/[5%]",
+              "rounded-lg border border-white/10 px-3 py-2 shadow-lg transition duration-200 hover:bg-white/[5%]",
               {
                 "bg-white/10": active == "",
               }
@@ -43,7 +43,7 @@ const Display = ({ data }: { data: any }) => {
           {categories?.map((x: string, i: number) => (
             <button
               className={clsx(
-                "px-3 py-2 transition shadow-lg duration-200 border rounded-lg border-white/10 hover:bg-white/[5%]",
+                "rounded-lg border border-white/10 px-3 py-2 shadow-lg transition duration-200 hover:bg-white/[5%]",
                 {
                   "bg-white/10": active == x,
                 }
