@@ -4,15 +4,15 @@ import Link from "next/link";
 const Posts = ({ data }: { data: any }) => {
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 gap-y-5">
+      <div className="grid grid-cols-1 gap-4 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
         {data.map((x: any, index: number) => {
           return (
-            <Link href={`/tool/${x.id}`} key={index} className="">
+            <Link href={`/`} key={index} className="">
               {/* image */}
-              <div className="relative w-full h-auto aspect-video">
+              <div className="relative aspect-video h-auto w-full">
                 <ImageCom
                   src={x.image_url}
-                  className="object-cover w-full aspect-video rounded-xl"
+                  className="aspect-video w-full rounded-xl object-cover"
                   alt={x.title}
                   // width={360}
                   // height={360}
@@ -27,7 +27,7 @@ const Posts = ({ data }: { data: any }) => {
                   height={360}
                 /> */}
                 <span className="absolute bottom-2 left-2">
-                  <p className="bg-black/50 backdrop-blur-lg px-3 py-1.5 rounded-sm">
+                  <p className="rounded-sm bg-black/50 px-3 py-1.5 backdrop-blur-lg">
                     {x.pricing}
                   </p>
                 </span>
@@ -42,14 +42,14 @@ const Posts = ({ data }: { data: any }) => {
                 {/* category */}
                 <div className="flex gap-1">
                   <button
-                    className={`px-2 py-1 text-sm rounded-full bg-white/10`}
+                    className={`rounded-full bg-white/10 px-2 py-1 text-sm`}
                   >
                     {x.category}
                   </button>
                 </div>
                 {/* description */}
                 <div className="mt-1">
-                  <p className="text-base font-medium line-clamp-2 max-w-[80%]">
+                  <p className="line-clamp-2 max-w-[80%] text-base font-medium">
                     {x.short_description}
                   </p>
                 </div>
