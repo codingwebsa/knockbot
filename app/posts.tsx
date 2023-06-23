@@ -6,8 +6,12 @@ const Posts = ({ data }: { data: any }) => {
     <div>
       <div className="grid grid-cols-1 gap-4 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
         {data.map((x: any, index: number) => {
+          const link = x.website_url;
+          const modified_link = link.startsWith("https://")
+            ? link
+            : "https://" + link;
           return (
-            <Link href={`/`} key={index} className="">
+            <Link href={modified_link} target="_blank" key={index} className="">
               {/* image */}
               <div className="relative aspect-video h-auto w-full">
                 <ImageCom
