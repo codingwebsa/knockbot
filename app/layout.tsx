@@ -1,6 +1,4 @@
 import localFont from "next/font/local";
-import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { type Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -68,22 +66,11 @@ export default function RootLayout({
         after:fixed after:-left-[250px] after:top-[350px] after:-z-20 after:h-[500px] after:w-[700px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-radial after:from-white after:to-transparent after:opacity-30 after:blur-3xl after:content-[""]
         `}
       >
-        <ClerkProvider
-          signInUrl="/sign-in"
-          signUpUrl="/sign-up"
-          appearance={{
-            baseTheme: dark,
-            variables: {
-              colorPrimary: "rgba(255,255,255,.2)",
-            },
-          }}
-        >
-          <div>
-            <Navbar />
-            <main>{children}</main>
-            <Analytics />
-          </div>
-        </ClerkProvider>
+        <div>
+          <Navbar />
+          <main>{children}</main>
+          <Analytics />
+        </div>
       </body>
     </html>
   );
