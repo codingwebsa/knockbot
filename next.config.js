@@ -8,6 +8,7 @@ const nextConfig = {
       "webstack-screenshot-one.vercel.app",
       "webstack-screenshot.vercel.app",
     ],
+    unoptimized: true,
   },
 };
 
