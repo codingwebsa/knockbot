@@ -11,12 +11,12 @@ const Posts = ({ data }: { data: any }) => {
             ? link
             : "https://" + link;
           return (
-            <Link href={modified_link} target="_blank" key={index} className="">
+            <a href={modified_link} target="_blank" key={index} className="">
               {/* image */}
-              <div className="relative aspect-video h-auto w-full">
+              <div className="relative w-full h-auto aspect-video">
                 <ImageCom
                   src={x.image_url}
-                  className="aspect-video w-full rounded-xl object-cover"
+                  className="object-cover w-full aspect-video rounded-xl"
                   alt={x.title}
                   // width={360}
                   // height={360}
@@ -58,7 +58,7 @@ const Posts = ({ data }: { data: any }) => {
                   </p>
                 </div>
               </div>
-            </Link>
+            </a>
           );
         })}
       </div>
