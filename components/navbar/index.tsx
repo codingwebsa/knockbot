@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import Container from "../container";
-import { SearchIcon } from "@/components/icons";
+import Search from "./serach";
 import Menu from "./menu";
 
 const Navbar = () => {
@@ -19,14 +19,7 @@ const Navbar = () => {
               <Link href="/submit">Submit</Link>
               {/* <p>Sponsor</p> */}
             </div>
-            <div className="mr-3.5">
-              <button className="rounded-[4px] border border-white/10 px-4 py-2">
-                Newsletter
-              </button>
-            </div>
-            <span className="mr-4 md:mr-0">
-              <SearchIcon size={20} />
-            </span>
+            <Search />
             {/* hidden in (md:) */}
             <Menu />
           </nav>

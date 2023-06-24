@@ -1,7 +1,10 @@
 import ImageCom from "@/components/ImageCom";
-import Link from "next/link";
 
 const Posts = ({ data }: { data: any }) => {
+  if (data.length < 1) {
+    return <p className="mt-2 text-lg text-center">No tool found 💋</p>;
+  }
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
