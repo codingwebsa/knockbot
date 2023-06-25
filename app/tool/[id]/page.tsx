@@ -1,0 +1,80 @@
+import { notFound } from "next/navigation";
+import { FiExternalLink } from "react-icons/fi";
+
+import supabase from "@/services/supabase";
+import Container from "@/components/container";
+import Image from "next/image";
+import Link from "next/link";
+
+interface pageProps {
+  params: {
+    id: any;
+  };
+}
+
+const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
+  const { data, error } = await supabase
+    .from("websites")
+    .select("*")
+    .eq("id", id);
+
+  if (!data || error) {
+    return notFound();
+  }
+
+  const modified_link = data[0].website_url.startsWith("https://")
+    ? data[0].website_url
+    : "https://" + data[0].website_url;
+
+  return (
+    <div>
+      <Container className="mt-10 max-w-3xl">
+        <div>
+          <h1 className="text-center text-4xl font-bold">{data[0].title}</h1>
+          <p className="mt-4 text-center text-white/50">
+            {data[0].short_description}
+          </p>
+        </div>
+        <div className="relative mt-10">
+          <Image
+            src={data[0].image_url}
+            width={660}
+            height={600}
+            className="aspect-video h-auto w-full rounded-lg object-cover"
+            alt={data[0].title}
+          />
+          <span className="absolute bottom-4 left-4 rounded-sm bg-black/70 px-3 py-2">
+            {data[0].category}
+          </span>
+        </div>
+        <div className="mt-6">
+          <p className="text-justify text-lg">{data[0].description}</p>
+        </div>
+        <div className="mt-6 flex gap-4">
+          <a
+            href={modified_link}
+            target="_blank"
+            aria-label="website_url"
+            className="flex items-center gap-2 rounded-md bg-white px-5 py-2 font-semibold text-black"
+          >
+            <p>Visit site</p>
+            <span>
+              <FiExternalLink size={16} />
+            </span>
+          </a>
+          <button
+            type="button"
+            aria-label="share"
+            className="flex items-center gap-2 rounded-md border border-white/40 bg-transparent px-5 py-2 font-semibold text-white"
+          >
+            <p>Share</p>
+            <span>
+              <FiExternalLink size={16} />
+            </span>
+          </button>
+        </div>
+      </Container>
+    </div>
+  );
+};
+export default ToolPage;

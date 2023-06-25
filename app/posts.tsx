@@ -1,25 +1,22 @@
 import ImageCom from "@/components/ImageCom";
+import Link from "next/link";
 
 const Posts = ({ data }: { data: any }) => {
   if (data.length < 1) {
-    return <p className="mt-2 text-lg text-center">No tool found 💋</p>;
+    return <p className="mt-2 text-center text-lg">No tool found 💋</p>;
   }
 
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
         {data.map((x: any, index: number) => {
-          const link = x.website_url;
-          const modified_link = link.startsWith("https://")
-            ? link
-            : "https://" + link;
           return (
-            <a href={modified_link} target="_blank" key={index} className="">
+            <Link href={`/tool/${x.id}`} key={index} className="">
               {/* image */}
-              <div className="relative w-full h-auto aspect-video">
+              <div className="relative aspect-video h-auto w-full">
                 <ImageCom
                   src={x.image_url}
-                  className="object-cover w-full aspect-video rounded-xl"
+                  className="aspect-video w-full rounded-xl object-cover"
                   alt={x.title}
                   // width={360}
                   // height={360}
@@ -61,7 +58,7 @@ const Posts = ({ data }: { data: any }) => {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>

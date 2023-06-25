@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${cabinet.variable} relative overflow-x-hidden bg-[#151618] pb-96
          font-cabinet text-white 
