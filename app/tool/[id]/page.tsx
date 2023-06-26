@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { FiExternalLink } from "react-icons/fi";
+import Image from "next/image";
 
 import supabase from "@/services/supabase";
 import Container from "@/components/container";
-import Image from "next/image";
-import Link from "next/link";
+import ShareButton from "./share-button";
 
 interface pageProps {
   params: {
@@ -28,9 +28,9 @@ const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
 
   return (
     <div>
-      <Container className="mt-10 max-w-3xl">
+      <Container className="max-w-3xl mt-10">
         <div>
-          <h1 className="text-center text-4xl font-bold">{data[0].title}</h1>
+          <h1 className="text-4xl font-bold text-center">{data[0].title}</h1>
           <p className="mt-4 text-center text-white/50">
             {data[0].short_description}
           </p>
@@ -40,38 +40,32 @@ const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
             src={data[0].image_url}
             width={660}
             height={600}
-            className="aspect-video h-auto w-full rounded-lg object-cover"
+            className="object-cover w-full h-auto rounded-lg aspect-video"
             alt={data[0].title}
           />
-          <span className="absolute bottom-4 left-4 rounded-sm bg-black/70 px-3 py-2">
+          <span className="absolute px-3 py-2 rounded-sm bottom-4 left-4 bg-black/70">
             {data[0].category}
           </span>
         </div>
         <div className="mt-6">
-          <p className="text-justify text-lg">{data[0].description}</p>
+          <p className="text-lg text-justify">{data[0].description}</p>
         </div>
-        <div className="mt-6 flex gap-4">
+        <div className="flex gap-4 mt-6">
           <a
             href={modified_link}
             target="_blank"
             aria-label="website_url"
-            className="flex items-center gap-2 rounded-md bg-white px-5 py-2 font-semibold text-black"
+            className="flex items-center gap-2 px-5 py-2 font-semibold text-black bg-white rounded-md"
           >
             <p>Visit site</p>
             <span>
               <FiExternalLink size={16} />
             </span>
           </a>
-          <button
-            type="button"
-            aria-label="share"
-            className="flex items-center gap-2 rounded-md border border-white/40 bg-transparent px-5 py-2 font-semibold text-white"
-          >
-            <p>Share</p>
-            <span>
-              <FiExternalLink size={16} />
-            </span>
-          </button>
+          <ShareButton
+            url={`knockbot.net/tool/${data[0].id}`}
+            title={`${data[0].title} - ${data[0].short_description}`}
+          />
         </div>
       </Container>
     </div>
