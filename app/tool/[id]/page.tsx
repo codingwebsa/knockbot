@@ -26,7 +26,14 @@ export async function generateMetadata({
       ? data[0].short_description
       : "Explore The whole new Era of AI Power Life.",
     openGraph: {
-      images: [data ? data[0].image_url : "/og.jpg"],
+      images: [
+        {
+          url: data ? data[0].image_url : "/og.jpg",
+          width: 1080,
+          height: 720,
+          alt: data ? data[0].title : "Knockbot.net",
+        },
+      ],
     },
   };
 }
