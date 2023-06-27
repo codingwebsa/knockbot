@@ -1,10 +1,35 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FiExternalLink } from "react-icons/fi";
+
 import Image from "next/image";
 
 import supabase from "@/services/supabase";
 import Container from "@/components/container";
 import ShareButton from "./share-button";
+
+interface MetadataProps {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const id = params.id;
+
+  const { data } = await supabase.from("websites").select("*").eq("id", id);
+
+  return {
+    title: data ? data[0].title : "Knockbot.net",
+    description: data
+      ? data[0].short_description
+      : "Explore The whole new Era of AI Power Life.",
+    openGraph: {
+      images: [data ? data[0].image_url : "/og.jpg"],
+    },
+  };
+}
 
 interface pageProps {
   params: {
@@ -28,9 +53,9 @@ const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
 
   return (
     <div>
-      <Container className="max-w-3xl mt-10">
+      <Container className="mt-10 max-w-3xl">
         <div>
-          <h1 className="text-4xl font-bold text-center">{data[0].title}</h1>
+          <h1 className="text-center text-4xl font-bold">{data[0].title}</h1>
           <p className="mt-4 text-center text-white/50">
             {data[0].short_description}
           </p>
@@ -40,22 +65,22 @@ const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
             src={data[0].image_url}
             width={660}
             height={600}
-            className="object-cover w-full h-auto rounded-lg aspect-video"
+            className="aspect-video h-auto w-full rounded-lg object-cover"
             alt={data[0].title}
           />
-          <span className="absolute px-3 py-2 rounded-sm bottom-4 left-4 bg-black/70">
+          <span className="absolute bottom-4 left-4 rounded-sm bg-black/70 px-3 py-2">
             {data[0].category}
           </span>
         </div>
         <div className="mt-6">
-          <p className="text-lg text-justify">{data[0].description}</p>
+          <p className="text-justify text-lg">{data[0].description}</p>
         </div>
-        <div className="flex gap-4 mt-6">
+        <div className="mt-6 flex gap-4">
           <a
             href={modified_link}
             target="_blank"
             aria-label="website_url"
-            className="flex items-center gap-2 px-5 py-2 font-semibold text-black bg-white rounded-md"
+            className="flex items-center gap-2 rounded-md bg-white px-5 py-2 font-semibold text-black"
           >
             <p>Visit site</p>
             <span>
