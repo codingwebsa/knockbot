@@ -8,6 +8,19 @@ import supabase from "@/services/supabase";
 import Container from "@/components/container";
 import ShareButton from "./share-button";
 
+export async function generateStaticParams() {
+  let { data } = await supabase.from("websites").select("*");
+  console.log(data);
+
+  if (!data) {
+    return ["1", "34", "2"];
+  }
+
+  return data[0].map((x: any) => ({
+    slug: `${x.id}`,
+  }));
+}
+
 interface MetadataProps {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
