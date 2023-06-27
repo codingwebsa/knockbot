@@ -88,7 +88,7 @@ const ToolPage: React.FC<pageProps> = async ({ params: { id } }) => {
             </span>
           </a>
           <ShareButton
-            url={`knockbot.net/tool/${data[0].id}`}
+            url={`https://knockbot.net/tool/${data[0].id}`}
             title={`${data[0].title} - ${data[0].short_description}`}
           />
         </div>
