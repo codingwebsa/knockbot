@@ -16,7 +16,7 @@ export async function generateStaticParams() {
     return ["1", "34", "2"];
   }
 
-  return data[0].map((x: any) => ({
+  return data.map((x: any) => ({
     slug: `${x.id}`,
   }));
 }
