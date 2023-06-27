@@ -48,6 +48,14 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      card: "summary",
+      title: data ? data[0].title : "Knockbot.net",
+      description: data
+        ? data[0].short_description
+        : "Explore The whole new Era of AI Power Life.",
+      images: [data ? data[0].image_url : "/og.jpg"],
+    },
   };
 }
 
